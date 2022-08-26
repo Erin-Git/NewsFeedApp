@@ -1,3 +1,9 @@
+.mainDiv{
+    margin-top: 80px;
+}
+h1{
+    text-align: center;
+}
 mat-icon{
     padding: 10px;
     font-size: 30px;

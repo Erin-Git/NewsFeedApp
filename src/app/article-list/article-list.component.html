@@ -1,12 +1,11 @@
-<div style="margin-top: 80px;">
-  <h2 style="text-align: center;">Add New Story
+<div class="mainDiv">
+  <h1>Add New Story
   <mat-icon mat-fab color="primary" (click)="addArticle()">add_circle</mat-icon>
-  <!-- <button mat-button mat-raised-button color="primary" (click)="addArticle()">Add Story</button> -->
-</h2>
-  <mat-grid-list cols="4" rowHeight="5:3" style="background-color: lightblue;">
+</h1>
+  <mat-grid-list cols="4" rowHeight="5:3" *ngIf="dataLoaded">
     <mat-grid-tile *ngFor="let each of articles">
       <mat-card>
-        <mat-card-title>{{each.section}}</mat-card-title>
+        <mat-card-title>{{each.title}}</mat-card-title>
         <mat-card-subtitle>{{each.abstract}}</mat-card-subtitle>
         <mat-card-subtitle>Published on: {{each.publishedDate | date:'mediumDate'}}</mat-card-subtitle>
         <div>
@@ -17,8 +16,4 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-
-  <mat-card>
-
-  </mat-card>
 </div>

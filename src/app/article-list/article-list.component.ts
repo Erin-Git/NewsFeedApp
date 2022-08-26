@@ -14,8 +14,11 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
 export class ArticleListComponent implements OnInit {
   articles: any = [];
   section: any = null;
-  constructor(public articleService: ArticleService,
-    public dialog: MatDialog,) { }
+  dataLoaded: boolean = false;
+  constructor(
+    public articleService: ArticleService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getArticleList();
@@ -23,10 +26,11 @@ export class ArticleListComponent implements OnInit {
   }
   getArticleList() {
     const section = localStorage.getItem("section");
-    console.log(section);
-
     this.articleService.getArticleList().subscribe(res => {
       console.log(res);
+      if (res.isExecuted) {
+        this.dataLoaded = true;
+      }
       if (section === "Home") {
         this.articles = res.result
       }
@@ -39,6 +43,7 @@ export class ArticleListComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '80%';
+    dialogConfig.height = '60';
     this.dialog.open(AddEditArticleComponent, dialogConfig);
     dialogConfig.id = this.section;
     this.getArticleList();
@@ -46,7 +51,7 @@ export class ArticleListComponent implements OnInit {
   editArticle(record: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '50%';
+    dialogConfig.width = '80%';
     dialogConfig.id = this.section;
     dialogConfig.data = record;
     this.dialog.open(AddEditArticleComponent, dialogConfig);
@@ -54,16 +59,20 @@ export class ArticleListComponent implements OnInit {
   }
   removeArticle(articleId: any) {
     this.articleService.removeArticle(articleId).subscribe(res => {
-      console.log(res);
+      if (res.isExecuted) {
+        window.alert("Successfully Done !")
+      }
+      else {
+        window.alert("An Error Occured !")
+      }
+      this.getArticleList();
     })
-    this.getArticleList();
   }
   articleDetails(article: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '50%';
+    dialogConfig.width = '40%';
     dialogConfig.data = article;
     this.dialog.open(ArticleDetailsComponent, dialogConfig);
-
   }
 }

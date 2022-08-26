@@ -22,14 +22,14 @@ export class AddEditArticleComponent implements OnInit {
     byLine: [''],
     desFacet: [''],
     geoFacet: [''],
-    itemType: [''],
+    itemType: ['', Validators.required],
     kicker: [''],
     materialTypeFacet: [''],
     orgFacet: [''],
     perFacet: [''],
     publishedDate: [Validators.required],
     section: [this.sectionLocal],
-    shortUrl: [''],
+    shortUrl: ['', Validators.required],
     subSection: [''],
     title: ['', Validators.required],
     url: [''],
@@ -37,11 +37,9 @@ export class AddEditArticleComponent implements OnInit {
   });
   ngOnInit(): void {
     this.sectionLocal = localStorage.getItem("section");
-    console.log(this.sectionLocal);
-
     if (this.data) {
       console.log(this.data);
-      this.articleId=this.data.articleId
+      this.articleId = this.data.articleId
       this.abstract!.patchValue(this.data.abstract)
       this.byLine!.patchValue(this.data.byLine)
       this.desFacet!.patchValue(this.data.desFacet)
@@ -52,7 +50,6 @@ export class AddEditArticleComponent implements OnInit {
       this.orgFacet!.patchValue(this.data.orgFacet)
       this.perFacet!.patchValue(this.data.perFacet)
       this.publishedDate!.patchValue(this.data.publishedDate)
-      // this.section!.patchValue(this.sectionLocal);
       this.shortUrl!.patchValue(this.data.shortUrl)
       this.subSection!.patchValue(this.data.subSection)
       this.title!.patchValue(this.data.title)
@@ -127,16 +124,15 @@ export class AddEditArticleComponent implements OnInit {
       uri: this.articleForm.value.uri,
     }
     this.articleService.addEditArticle(formdata).subscribe(res => {
-      if(res.isExecuted){
+      if (res.isExecuted) {
         window.alert("Successfully Done !")
       }
-      else{
+      else {
         window.alert("An Error Occured !")
       }
-    }, 
-    (error:any)=>{
-      window.alert(error)
-    });
-    
+    },
+      (error: any) => {
+        window.alert(error)
+      });
   }
 }
