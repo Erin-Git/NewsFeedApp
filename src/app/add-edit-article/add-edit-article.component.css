@@ -1,0 +1,9 @@
+mat-form-field{
+    margin: 2px;
+}
+button{
+    text-align: right;
+    position: absolute;
+    top: 75%; right: 50%;
+    transform: translateX(50%,-50%)
+}

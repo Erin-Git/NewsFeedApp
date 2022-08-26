@@ -1,0 +1,67 @@
+<form [formGroup]="articleForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+        <label>Enter Story Title</label>
+        <input matInput type="text" formControlName="title" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Story abstract</label>
+        <input matInput type="text" formControlName="abstract" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter URL</label>
+        <input matInput type="text" formControlName="url">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter SHort URL</label>
+        <input matInput type="text" formControlName="shortUrl">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter URI</label>
+        <input matInput type="text" formControlName="uri">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter By Line</label>
+        <input matInput type="text" formControlName="byLine">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Material Type Facet</label>
+        <input matInput type="text" formControlName="materialTypeFacet">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Des Facet</label>
+        <input matInput type="text" formControlName="desFacet">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Geo Facet</label>
+        <input matInput type="text" formControlName="geoFacet">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Org Facet</label>
+        <input matInput type="text" formControlName="orgFacet">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Per Facet</label>
+        <input matInput type="text" formControlName="perFacet">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Item Type</label>
+        <input matInput type="text" formControlName="itemType">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Story Kicker</label>
+        <input matInput type="text" formControlName="kicker">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Subsection</label>
+        <input matInput type="text" formControlName="subSection">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <label>Enter Published Date</label>
+        <input matInput type="datetime" formControlName="publishedDate" required [matDatepicker]="picker5" placeholder="DD/MM/YYYY">
+        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+        <mat-datepicker #picker5></mat-datepicker>
+    </mat-form-field>
+    <div>    
+        <button  type="submit" mat-raised-button color="primary" [disabled]="articleForm.invalid">Submit</button>
+    </div>
+</form>
